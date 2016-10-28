@@ -5,6 +5,9 @@ grass=1
 water=2
 coal=3
 
+#resources list
+
+resources=[dirt,grass,water,coal]
 #a dictionary resources to textures
 textures = {
 		grass: pygame.image.load('grass.png'),
@@ -19,6 +22,21 @@ mapwidth=10
 mapheight=10
 #Random tilemap generation, Set to all dirt
 tilemap=[ [dirt for w in range(mapwidth)] for h in range(mapheight)]
+
+def randomtile():
+	randomNumber=random.randint(0,15)
+	if randomNumber==0:
+		tile=coal
+	elif randomNumber==1 or randomNumber==2:
+		tile=water
+	elif randomNumber>=3 and randomNumber<=7:
+		tile=grass
+	else:
+		tile=dirt
+
+	return tile
+
+
 #Weghted tilemap generation
 import random
 for rw in range(mapheight):
@@ -49,3 +67,14 @@ pygame.display.set_caption("Game")
 player=pygame.image.load("player.png").convert_alpha()
 #player pos
 playerPos=[0,0]
+
+
+#inventory
+inventory= {
+dirt:0,
+grass:0,
+water:0,
+coal:0
+}
+
+invfont=pygame.font.Font('Vera.ttf',18)
